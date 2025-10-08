@@ -1,0 +1,7 @@
+﻿GET http://localhost:5001/product-carts/{{productCartId}}
+Content-Type: application/json
+
+### Example Usage
+# set a specific productCartId to test
+# @name GetProductCartResponse
+GET http://localhost:5001/product-carts/1e02ccde-d762-44ff-8836-12de0d0345f6
