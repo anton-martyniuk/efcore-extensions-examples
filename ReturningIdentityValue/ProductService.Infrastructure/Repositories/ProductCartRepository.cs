@@ -6,7 +6,7 @@ namespace ProductService.Infrastructure.Repositories;
 
 public class ProductCartRepository(ProductDbContext context) : IProductCartRepository
 {
-    public async Task<ProductCart?> GetByIdAsync(Guid id)
+    public async Task<ProductCart?> GetByIdAsync(int id)
     {
         return await context.ProductCarts
             .AsNoTracking()
@@ -41,7 +41,7 @@ public class ProductCartRepository(ProductDbContext context) : IProductCartRepos
         await context.SaveChangesAsync();
     }
 
-    public async Task DeleteAsync(Guid id)
+    public async Task DeleteAsync(int id)
     {
         var productCart = await context.ProductCarts.FindAsync(id);
         if (productCart is not null)
@@ -61,7 +61,7 @@ public class ProductCartRepository(ProductDbContext context) : IProductCartRepos
             .ToListAsync();
     }
 
-    public async Task<bool> AddProductToCartAsync(Guid cartId, int productId, int quantity)
+    public async Task<bool> AddProductToCartAsync(int cartId, int productId, int quantity)
     {
         var productCart = await context.ProductCarts
             .Include(x => x.CartItems)
@@ -96,7 +96,7 @@ public class ProductCartRepository(ProductDbContext context) : IProductCartRepos
         return true;
     }
 
-    public async Task<bool> UpdateProductInCartAsync(Guid cartId, int productId, int newQuantity)
+    public async Task<bool> UpdateProductInCartAsync(int cartId, int productId, int newQuantity)
     {
         var productCart = await context.ProductCarts
             .Include(x => x.CartItems)
@@ -122,7 +122,7 @@ public class ProductCartRepository(ProductDbContext context) : IProductCartRepos
         return true;
     }
 
-    public async Task<bool> RemoveProductFromCartAsync(Guid cartId, int productId)
+    public async Task<bool> RemoveProductFromCartAsync(int cartId, int productId)
     {
         var productCart = await context.ProductCarts
             .Include(x => x.CartItems)

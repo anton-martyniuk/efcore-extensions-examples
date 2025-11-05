@@ -1,5 +1,6 @@
 using Carter;
 using Microsoft.EntityFrameworkCore;
+using ProductService.Host.Services;
 using ProductService.Infrastructure.Database;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -28,7 +29,7 @@ app.MapCarter();
 using (var scope = app.Services.CreateScope())
 {
 	// To create migrations run the command:
-	// dotnet ef migrations add Initial --startup-project ./ProductService.Host --project ./ProductService.Infrastructure -- --context ProductService.Infrastructure.Database.ApplicationDbContext
+	// dotnet ef migrations add Initial --startup-project ./ProductService.Host --project ./ProductService.Infrastructure -- --context ProductService.Infrastructure.Database.ProductDbContext
 
 	var dbContext = scope.ServiceProvider.GetRequiredService<ProductDbContext>();
 	await dbContext.Database.MigrateAsync();

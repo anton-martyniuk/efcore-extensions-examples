@@ -4,7 +4,7 @@ namespace ProductService.Domain.Products;
 
 public class ProductCart
 {
-    public Guid Id { get; set; }
+    public int Id { get; set; }
     
     public int Quantity { get; set; }
 

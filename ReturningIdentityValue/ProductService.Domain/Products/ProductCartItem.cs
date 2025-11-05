@@ -4,7 +4,7 @@ public class ProductCartItem
 {
     public int Id { get; set; }
 
-    public Guid ProductCartId { get; set; }
+    public int ProductCartId { get; set; }
     public ProductCart ProductCart { get; set; } = null!;
 
     public int ProductId { get; set; }

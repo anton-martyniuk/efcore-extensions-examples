@@ -56,10 +56,12 @@ namespace ProductService.Infrastructure.Migrations
 
             modelBuilder.Entity("ProductService.Domain.Products.ProductCart", b =>
                 {
-                    b.Property<Guid>("Id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier")
+                        .HasColumnType("int")
                         .HasColumnName("id");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<DateTime>("CreatedOn")
                         .HasColumnType("datetime2")
@@ -91,8 +93,8 @@ namespace ProductService.Infrastructure.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<Guid>("ProductCartId")
-                        .HasColumnType("uniqueidentifier")
+                    b.Property<int>("ProductCartId")
+                        .HasColumnType("int")
                         .HasColumnName("product_cart_id");
 
                     b.Property<int>("ProductId")

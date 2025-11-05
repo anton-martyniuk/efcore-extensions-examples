@@ -44,7 +44,6 @@ public class ProductCartsEndpoints : ICarterModule
 		    .Generate(200);
 
 	    return new Faker<ProductCart>()
-		    .RuleFor(pc => pc.Id, _ => Guid.NewGuid())
 		    .RuleFor(pc => pc.Quantity, f => f.Random.Int(1, 10))
 		    .RuleFor(pc => pc.User, f =>  f.PickRandom(users))
 		    .RuleFor(pc => pc.CreatedOn, f => f.Date.Recent(30))

@@ -2,19 +2,19 @@
 
 public interface IProductCartRepository
 {
-    Task<ProductCart?> GetByIdAsync(Guid id);
+    Task<ProductCart?> GetByIdAsync(int id);
 
     Task AddAsync(ProductCart productCart);
 
     Task UpdateAsync(ProductCart productCart);
 
-    Task DeleteAsync(Guid id);
+    Task DeleteAsync(int id);
 
     Task<IEnumerable<ProductCart>> GetByUserIdAsync(int userId);
     
-    Task<bool> AddProductToCartAsync(Guid cartId, int productId, int quantity);
+    Task<bool> AddProductToCartAsync(int cartId, int productId, int quantity);
 
-    Task<bool> UpdateProductInCartAsync(Guid cartId, int productId, int newQuantity);
+    Task<bool> UpdateProductInCartAsync(int cartId, int productId, int newQuantity);
 
-    Task<bool> RemoveProductFromCartAsync(Guid cartId, int productId);
+    Task<bool> RemoveProductFromCartAsync(int cartId, int productId);
 }

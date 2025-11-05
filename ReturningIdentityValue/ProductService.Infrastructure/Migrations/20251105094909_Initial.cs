@@ -50,7 +50,8 @@ namespace ProductService.Infrastructure.Migrations
                 schema: "products",
                 columns: table => new
                 {
-                    id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     quantity = table.Column<int>(type: "int", nullable: false),
                     user_id = table.Column<int>(type: "int", nullable: false),
                     created_on = table.Column<DateTime>(type: "datetime2", nullable: false)
@@ -74,7 +75,7 @@ namespace ProductService.Infrastructure.Migrations
                 {
                     id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    product_cart_id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    product_cart_id = table.Column<int>(type: "int", nullable: false),
                     product_id = table.Column<int>(type: "int", nullable: false),
                     quantity = table.Column<int>(type: "int", nullable: false, defaultValue: 1)
                 },
