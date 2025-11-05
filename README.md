@@ -77,3 +77,49 @@ Check the console logs for messages indicating a successful startup:
 - Verify your SQL Server instance is running and accessible
 - Ensure the connection string is correctly configured
 - Check that port 5000 (HTTPS) and 5001 (HTTP) are not being used by other applications
+
+## Running Benchmarks
+
+This repo includes a BenchmarkDotNet project that measures EF Core vs bulk operations.
+
+- Project path: `ReturningIdentityValue/Benchmarks`
+- Framework: `net9.0`
+
+### 1. Configure the database connection
+
+Update the connection string in `ReturningIdentityValue/Benchmarks/appsettings.json` (and optionally `appsettings.Development.json`) to point to your SQL Server:
+
+```json
+{
+  "ConnectionStrings": {
+    "SqlServer": "Server=YOUR_SERVER;Database=YOUR_DATABASE;User Id=YOUR_USER;Password=YOUR_PASSWORD;TrustServerCertificate=True;"
+  }
+}
+```
+
+Make sure the target database is reachable and the user has permissions to create tables and insert data.
+
+### 2. Build (Release)
+
+From the repository root:
+
+```bash
+dotnet build -c Release
+```
+
+### 3. Run the benchmarks (Release)
+
+From the repository root, run the Benchmarks project in Release configuration:
+
+```bash
+# Run all benchmarks
+dotnet run -c Release --project ReturningIdentityValue/Benchmarks
+```
+
+BenchmarkDotNet places results under `ReturningIdentityValue/Benchmarks/BenchmarkDotNet.Artifacts/results` as `.md` and `.html` reports.
+
+### Tips for stable results
+- Close other heavy applications; keep the machine idle during runs.
+- Prefer running on AC power and a performance power plan.
+- Use the same SQL Server instance for all runs; ensure it's not under external load.
+- Results are comparative; look at ratios between baselines and alternatives.
