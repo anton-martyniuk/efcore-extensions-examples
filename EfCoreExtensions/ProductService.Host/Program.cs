@@ -1,5 +1,6 @@
 using Carter;
 using Microsoft.EntityFrameworkCore;
+using ProductService.Host.Services;
 using ProductService.Infrastructure.Database;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -33,6 +34,14 @@ using (var scope = app.Services.CreateScope())
 	var dbContext = scope.ServiceProvider.GetRequiredService<ProductDbContext>();
 	await dbContext.Database.MigrateAsync();
 	//await DatabaseSeedService.SeedAsync(dbContext);
+	
+	await dbContext.Products.Take(100).ToListAsync();
+
+	await BulkOperations.InsertBulkSaveChangesAsync(dbContext);
+	
+	var products = await dbContext.Products.Take(100).ToListAsync();
 }
+
+
 
 await app.RunAsync();

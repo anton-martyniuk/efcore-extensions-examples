@@ -19,7 +19,7 @@ public class ProductsEndpoints : ICarterModule
         
 	    app.MapPost("/products/efcore-insert", async (ProductDbContext dbContext) =>
 	    {
-		    var products = GenerateProducts(100_000);
+		    var products = GenerateProducts(10_000);
 		    dbContext.Products.AddRange(products);
 
 		    await dbContext.SaveChangesAsync();
@@ -29,7 +29,7 @@ public class ProductsEndpoints : ICarterModule
 	    
 	    app.MapPost("/products/efcore-bulk-insert", async (ProductDbContext dbContext) =>
 	    {
-		    var products = GenerateProducts(100_000);
+		    var products = GenerateProducts(10_000);
 
 		    await dbContext.BulkInsertOptimizedAsync(products);
 
