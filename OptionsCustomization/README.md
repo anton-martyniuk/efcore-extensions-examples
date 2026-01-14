@@ -5,6 +5,52 @@
 - SQL Server (local, docker or remote instance)
 - IDE (Visual Studio, JetBrains Rider or Visual Studio Code) or .NET CLI
 
+## Resources
+
+### 1. Identity, AutoMapOutputDirection options
+- [Detailed on Insert Identity](https://entityframework-extensions.net/identity)
+- [List of Identity options](https://entityframework-extensions.net/bulk-extensions)
+- [Insert Keep Identity](https://entityframework-extensions.net/insert-keep-identity)
+
+### 2. BatchSize, BatchTimeout and BatchDelayInterval options
+- [Batch Options](https://entityframework-extensions.net/batch)
+
+### 3. AutoTruncate option
+- [Bulk Insert](https://entityframework-extensions.net/bulk-insert)
+
+### 4. Primary Key / Input / Output / Ignore options for different methods
+- [Primary Key](https://entityframework-extensions.net/primary-key)
+- [Input Output Ignore](https://entityframework-extensions.net/input-output-ignore)
+
+### 5. Coalesce / Coalesce Destination Options
+- [Coalesce](https://entityframework-extensions.net/coalesce)
+- [Coalesce Destination](https://entityframework-extensions.net/coalesce-destination)
+
+### 6. Matched and Condition Option
+- [Matched and Condition](https://entityframework-extensions.net/matched-and-condition)
+- [Matched and One Not Condition](https://entityframework-extensions.net/matched-and-one-not-condition)
+
+### 7. IncludeGraph and IncludeGraphBuilder options
+- [Include Graph](https://entityframework-extensions.net/include-graph)
+
+### 8. Events in Entity Framework Extensions
+- [Events](https://entityframework-extensions.net/events)
+
+### 9. Audit options
+- [Audit](https://entityframework-extensions.net/audit)
+
+### 10. Log options
+- [Logging](https://entityframework-extensions.net/logging)
+
+### 11. RowsAffected option
+- [Rows Affected](https://entityframework-extensions.net/rows-affected)
+
+### 12. Provider-Specific Options
+- [Bulk Insert - Providers Specific](https://entityframework-extensions.net/bulk-insert)
+
+### 13. Licensing information
+- [Pricing](https://entityframework-extensions.net/pricing)
+
 ## Getting Started
 
 ### 1. Configure Database Connection
