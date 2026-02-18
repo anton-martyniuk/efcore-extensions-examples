@@ -15,6 +15,27 @@ public static class OptionsService
     {
         Randomizer.Seed = new Random(1283);
         
+        // var devices = GenerateDevices(10);
+        // await dbContext.BulkInsertAsync(devices);
+        //
+        // // Insert same 10 devices again with InsertIfNotExists = true option
+        // await dbContext.BulkInsertAsync(devices, options =>
+        // {
+        //     options.InsertIfNotExists = true;
+        // });
+        
+        // var devices = GenerateDevices(2);
+        //
+        // devices[0].DeviceId = 1000;
+        // devices[1].DeviceId = 1001;
+        //
+        // await dbContext.BulkInsertAsync(devices, options =>
+        // {
+        //     options.InsertKeepIdentity = true;
+        // });
+
+        //await MeasureBulkInsertPerformance(dbContext);
+
         // EntityFrameworkManager.PreBulkMerge = (ctx, obj) =>
         // {
         //     if (obj is IEnumerable<Device> list)
@@ -28,15 +49,15 @@ public static class OptionsService
         //         }
         //     }
         // };
-        
+
         // await InsertDevicesWithComponents(dbContext);
         // await MeasureBulkInsertPerformance(dbContext);
         //await InsertDevicesWithTruncatedHardwareVersion(dbContext);
         // await DefineInputOutputExpressions(dbContext, devices);
-        // await UpdateDevicePropertiesWithCoalesce(dbContext);
+        await UpdateDevicePropertiesWithCoalesce(dbContext);
         // await UpdateDevicePropertiesMatched(dbContext);
         // await MergeDevicesAndComponents(dbContext);
-        await Auditing(dbContext);
+        //await Auditing(dbContext);
     }
 
     private static async Task Auditing(DeviceDbContext dbContext)
@@ -221,7 +242,7 @@ public static class OptionsService
         await dbContext.BulkInsertOptimizedAsync(devices);
         stopWatch.Stop();
         
-        elapsed = stopWatch.ElapsedMilliseconds;
+        var elapsed2 = stopWatch.ElapsedMilliseconds;
     }
 
     private static List<Device> GenerateDevices(int count)
