@@ -1,0 +1,35 @@
+### EF Core Extensions - WhereBulkContains (GET)
+GET {{host}}/products/where-bulk-contains
+
+### EF Core Extensions - WhereBulkNotContains (GET)
+GET {{host}}/products/where-bulk-not-contains
+
+### EF Core Extensions - BulkRead (POST)
+POST {{host}}/products/bulk-read
+Content-Type: application/json
+
+[
+  { "id": 1, "productCode": "SKU-0001", "supplierCode": "SUP-001" },
+  { "id": 2, "productCode": "SKU-0002", "supplierCode": "SUP-001" },
+  { "id": 999999, "productCode": "SKU-NOT-EXIST", "supplierCode": "SUP-XXX" }
+]
+
+### EF Core Extensions - WhereBulkContainsFilterList (POST) - Existing items from list
+POST {{host}}/products/filter-list/existing
+Content-Type: application/json
+
+[
+  { "id": 3, "productCode": "SKU-0003", "supplierCode": "SUP-002" },
+  { "id": 4, "productCode": "SKU-0004", "supplierCode": "SUP-002" },
+  { "id": 888888, "productCode": "SKU-NOT-EXIST", "supplierCode": "SUP-YYY" }
+]
+
+### EF Core Extensions - WhereBulkNotContainsFilterList (POST) - Not existing items from list
+POST {{host}}/products/filter-list/not-existing
+Content-Type: application/json
+
+[
+  { "id": 5, "productCode": "SKU-0005", "supplierCode": "SUP-003" },
+  { "id": 6, "productCode": "SKU-0006", "supplierCode": "SUP-003" },
+  { "id": 777777, "productCode": "SKU-NOT-EXIST", "supplierCode": "SUP-ZZZ" }
+]
