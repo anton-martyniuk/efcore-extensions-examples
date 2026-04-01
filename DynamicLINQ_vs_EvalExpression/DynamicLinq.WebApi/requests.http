@@ -1,0 +1,104 @@
+﻿@host = http://localhost:5113
+
+### Structured filter - no filters (returns all books)
+POST {{host}}/api/books/filter
+Content-Type: application/json
+
+{
+  "title": null,
+  "genre": null,
+  "language": null,
+  "publisher": null,
+  "format": null,
+  "yearFrom": null,
+  "yearTo": null,
+  "priceFrom": null,
+  "priceTo": null,
+  "pageCountFrom": null,
+  "pageCountTo": null,
+  "minRating": null,
+  "isAvailable": null,
+  "sortBy": null,
+  "sortDirection": null
+}
+
+###
+
+### Structured filter - filter by genre
+POST {{host}}/api/books/filter
+Content-Type: application/json
+
+{
+  "genre": "Fiction",
+  "sortBy": "title",
+  "sortDirection": "asc"
+}
+
+###
+
+### Structured filter - filter by price range, sorted by price ascending
+POST {{host}}/api/books/filter
+Content-Type: application/json
+
+{
+  "priceFrom": 10,
+  "priceTo": 50,
+  "sortBy": "price",
+  "sortDirection": "asc"
+}
+
+###
+
+### Structured filter - filter by year range and language
+POST {{host}}/api/books/filter
+Content-Type: application/json
+
+{
+  "yearFrom": 2010,
+  "yearTo": 2020,
+  "language": "English",
+  "sortBy": "year",
+  "sortDirection": "desc"
+}
+
+###
+
+### Structured filter - filter by minimum rating, only available books
+POST {{host}}/api/books/filter
+Content-Type: application/json
+
+{
+  "minRating": 4.0,
+  "isAvailable": true,
+  "sortBy": "rating",
+  "sortDirection": "desc"
+}
+
+###
+
+### Structured filter - filter by format and page count range
+POST {{host}}/api/books/filter
+Content-Type: application/json
+
+{
+  "format": "E-Book",
+  "pageCountFrom": 100,
+  "pageCountTo": 400,
+  "sortBy": "pagecount",
+  "sortDirection": "asc"
+}
+
+###
+
+### Structured filter - filter by publisher and title keyword
+POST {{host}}/api/books/filter
+Content-Type: application/json
+
+{
+  "title": "the",
+  "publisher": "Penguin",
+  "sortBy": "title",
+  "sortDirection": "asc"
+}
+
+###
