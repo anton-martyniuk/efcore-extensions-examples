@@ -2,7 +2,7 @@
 
 public class DatabaseConsts
 {
-    public const string Schema = "products";
+    public const string Schema = "products_identity";
     
     public const string MigrationHistoryTable = "migration_history";
 }

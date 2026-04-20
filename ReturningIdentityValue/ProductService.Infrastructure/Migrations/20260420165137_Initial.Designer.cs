@@ -12,7 +12,7 @@ using ProductService.Infrastructure.Database;
 namespace ProductService.Infrastructure.Migrations
 {
     [DbContext(typeof(ProductDbContext))]
-    [Migration("20251105094909_Initial")]
+    [Migration("20260420165137_Initial")]
     partial class Initial
     {
         /// <inheritdoc />
@@ -20,8 +20,8 @@ namespace ProductService.Infrastructure.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasDefaultSchema("products")
-                .HasAnnotation("ProductVersion", "9.0.9")
+                .HasDefaultSchema("products_identity")
+                .HasAnnotation("ProductVersion", "10.0.6")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
@@ -35,11 +35,45 @@ namespace ProductService.Infrastructure.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<string>("Barcode")
+                        .IsRequired()
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)")
+                        .HasColumnName("barcode");
+
+                    b.Property<string>("Brand")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)")
+                        .HasColumnName("brand");
+
+                    b.Property<string>("Category")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)")
+                        .HasColumnName("category");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2")
+                        .HasColumnName("created_at");
+
                     b.Property<string>("Description")
                         .IsRequired()
                         .HasMaxLength(1000)
                         .HasColumnType("nvarchar(1000)")
                         .HasColumnName("description");
+
+                    b.Property<bool>("IsActive")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bit")
+                        .HasDefaultValue(true)
+                        .HasColumnName("is_active");
+
+                    b.Property<string>("Manufacturer")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)")
+                        .HasColumnName("manufacturer");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -51,10 +85,32 @@ namespace ProductService.Infrastructure.Migrations
                         .HasColumnType("decimal(18,2)")
                         .HasColumnName("price");
 
+                    b.Property<string>("Sku")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)")
+                        .HasColumnName("sku");
+
+                    b.Property<int>("StockQuantity")
+                        .HasColumnType("int")
+                        .HasColumnName("stock_quantity");
+
+                    b.Property<DateTime?>("UpdatedAt")
+                        .HasColumnType("datetime2")
+                        .HasColumnName("updated_at");
+
+                    b.Property<decimal>("Weight")
+                        .HasColumnType("decimal(10,3)")
+                        .HasColumnName("weight");
+
                     b.HasKey("Id")
                         .HasName("pk_products");
 
-                    b.ToTable("products", "products");
+                    b.HasIndex("Sku")
+                        .IsUnique()
+                        .HasDatabaseName("ix_products_sku");
+
+                    b.ToTable("products", "products_identity");
                 });
 
             modelBuilder.Entity("ProductService.Domain.Products.ProductCart", b =>
@@ -84,7 +140,7 @@ namespace ProductService.Infrastructure.Migrations
                     b.HasIndex("UserId")
                         .HasDatabaseName("ix_product_carts_user_id");
 
-                    b.ToTable("product_carts", "products");
+                    b.ToTable("product_carts", "products_identity");
                 });
 
             modelBuilder.Entity("ProductService.Domain.Products.ProductCartItem", b =>
@@ -119,7 +175,7 @@ namespace ProductService.Infrastructure.Migrations
                     b.HasIndex("ProductId")
                         .HasDatabaseName("ix_product_cart_items_product_id");
 
-                    b.ToTable("product_cart_items", "products");
+                    b.ToTable("product_cart_items", "products_identity");
                 });
 
             modelBuilder.Entity("ProductService.Domain.Users.User", b =>
@@ -146,7 +202,7 @@ namespace ProductService.Infrastructure.Migrations
                     b.HasKey("Id")
                         .HasName("pk_users");
 
-                    b.ToTable("users", "products");
+                    b.ToTable("users", "products_identity");
                 });
 
             modelBuilder.Entity("ProductService.Domain.Products.ProductCart", b =>
