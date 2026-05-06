@@ -12,3 +12,4 @@ appsettings.production.json
 docker_data
 node_modules
 *.user
+.claude
